@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     end
     begin
       @frequencia_atual = Frequencia.where(user_id:current_user.id, saida:nil).last
+    rescue => exception
+      @frequencia_atual = nil
     end
   end
 

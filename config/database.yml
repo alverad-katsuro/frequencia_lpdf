@@ -50,6 +50,4 @@ development:
 #
 production:
   <<: *default
-  database: frequencia_lpdf_production
-  username: frequencia_lpdf
-  password: <%= ENV["FREQUENCIA_LPDF_DATABASE_PASSWORD"] %>
+  database: frequencia_lpdf

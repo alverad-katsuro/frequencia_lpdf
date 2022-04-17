@@ -76,3 +76,5 @@ end
 
 gem "cancancan", "~> 3.3"
 gem "devise", "~> 4.8"
+
+gem "passenger", "~> 6.0"
