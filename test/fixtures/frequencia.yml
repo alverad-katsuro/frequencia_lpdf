@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  entrada: 2022-04-17 12:23:34
+  saida: 2022-04-17 12:23:34
+  fechou_o_ponto: false
+
+two:
+  user: two
+  entrada: 2022-04-17 12:23:34
+  saida: 2022-04-17 12:23:34
+  fechou_o_ponto: false
