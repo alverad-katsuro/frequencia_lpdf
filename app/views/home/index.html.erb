@@ -1,4 +1,16 @@
-<div>
-  <h1 class="font-bold text-4xl">Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+<div class="bg-white h-screen flex items-center justify-center">
+
+  <!-- Card -->
+  <card class="border-2 border-gray-300 rounded-2xl p-5 w-96">
+  
+    <!-- Caption -->
+    <p class="text-2xl font-bold text-gray-700 text-center">Assinador de frequencia</p>
+
+    <% unless @frequencia_atual.nil? %>
+      <%= button_to("Eu ja vou!!", {:action =>"update"}, :method => :patch, :class=>"hover:bg-green-400 bg-green-500 delay-75 duration-100 text-white text-sm font-bold rounded-2xl w-full py-3 mt-7 border-b-4 border-b-green-600")%>
+    <% else %>
+      <%= button_to("Eu vim!!", {:action =>"new"}, :class=>"hover:bg-green-400 bg-green-500 delay-75 duration-100 text-white text-sm font-bold rounded-2xl w-full py-3 mt-7 border-b-4 border-b-green-600")%>
+    <% end %>
+  </card>
+
 </div>

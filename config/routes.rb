@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'relatorio/index'
+  devise_for :users, 
+  controllers: {
+    registrations: 'user/registrations'
+  }
   root 'home#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  post "home", to: "home#new"
+  patch "home", to: "home#update"
+  get "home", to: "home#teste"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  #patch "cobranca/:id", to: "cobranca#update" 
 end

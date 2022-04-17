@@ -1,0 +1,5 @@
+<% if erros && keys_hash.include?(:"perfil.estado")%>
+  <%= perfil.text_field :estado, autofocus:true, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-red-500 placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm", :placeholder=>"Estado", :maxlength=>"2", :value=>"PA" %><br>
+<% else %>
+  <%= perfil.text_field :estado, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", :placeholder=>"Estado", :maxlength=>"2", :value=>"PA" %><br>
+<% end %>

@@ -1,0 +1,10 @@
+<% if erros && keys_hash.include?(:"email")%>
+  <% if keys_hash[:"email"].eql?(["Insira seu email"]) %>
+    <%= f.email_field :email, autocomplete: "email", autofocus: true, :id=>"email-address", :class=>"appearance-none relative block w-full px-3 py-2 border border-red-500 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-red-500 focus:border-red-900 focus:z-10 sm:text-sm mb-5", :placeholder=>"Email address" %>
+  <% else %>
+    <p class="mt-2 text-center text-sm text-gray-600">E-mail ja cadastrado</p>
+    <%= f.email_field :email, autocomplete: "email", autofocus: true, :id=>"email-address", :class=>"appearance-none relative block w-full px-3 py-2 border border-red-500 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-red-500 focus:border-red-900 focus:z-10 sm:text-sm mb-5", :placeholder=>"Email address" %>
+  <% end %>
+<% else %>
+  <%= f.email_field :email, autocomplete: "email", :id=>"email-address", :class=>"appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-5", :placeholder=>"Email address" %>
+<% end %>

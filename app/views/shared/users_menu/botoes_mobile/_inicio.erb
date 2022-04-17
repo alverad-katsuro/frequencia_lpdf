@@ -1,0 +1,5 @@
+<% if (request.path.eql?(root_path)) %>
+  <%= link_to("Inicio", root_path, :class=>"bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium",  :'aria-current' =>"page")%>
+<% else %>
+  <%= link_to("Inicio", root_path, :class=>"text-gray-300 hover:bg-gray-700 block hover:text-white px-3 py-2 rounded-md text-base font-medium")%>
+<% end %>

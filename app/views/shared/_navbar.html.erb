@@ -1,0 +1,70 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <!-- menu mobi -->
+
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+
+        <!-- Mobile menu button-->
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu"  id='navbar-burger' onclick="hide_navbar();">
+          <!--
+            Icon when menu is closed.
+
+            Heroicon name: outline/menu
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!--
+            Icon when menu is open.
+
+            Heroicon name: outline/x
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- menu desk -->
+
+      <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex-shrink-0 flex items-center">
+          <%= link_to(image_tag("logo_white.png", :class=> "block lg:hidden h-12 w-auto"), root_path)%>
+          <%= link_to(image_tag("logo_white.png", :class=> "hidden lg:block h-8 w-auto"), root_path)%>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <%= render "shared/users_menu/botoes/inicio" %>
+            <%= render "shared/users_menu/botoes/relatorio" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- usuario -->
+
+        <div class="buttons" id='signs'>
+          <% if user_signed_in? %>
+            <%= button_to("Sair", destroy_user_session_path, method: :delete, :class=>"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900")%>
+          <% else %>
+            <%= link_to(image_tag("avatar.ico", :class=>"mx-auto h-12 w-auto"), new_user_session_path)%>
+          <% end %>
+        </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-4 space-y-1 hidden" id="nav-links">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <%= render "shared/users_menu/botoes_mobile/inicio" %>
+      <%= render "shared/users_menu/botoes_mobile/relatorio" %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,122 @@
+<div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <%= image_tag('emblema.png', :class=>"mx-auto h-32 w-auto")%>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Atualizar Dados
+      </h2>
+    </div>
+    <%= turbo_frame_tag resource, target: '_top' do %>
+      <script src="<%= javascript_path("input_phone.js") %>" async="async" data-turbo-track="reload"></script>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :patch, :class=>"mt-8 space-y-6") do |f| %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <% if resource.errors.any? %>
+        <%   erros = resource.errors.any? %>
+        <%   keys_hash = resource.errors.to_hash %>
+        <% end %>        
+        <%= f.fields_for :perfil, method: :patch do |perfil| %>
+          
+          <div class="my-5">
+              <%= perfil.label :avatar, :class=> "sr-only" %>
+              <%= perfil.file_field :avatar %>
+          </div>
+
+          <div class="mb-4 md:flex md:justify-between">
+            <div class="flex-grow">
+              <%= perfil.label :name, :class=> "sr-only" %>
+                <%= render "devise/registrations/campos/nome", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+            </div>
+            <div class="flex-grow">
+              <%= perfil.label :sobrenome, :class=> "sr-only" %>
+                <%= render "devise/registrations/campos/sobrenome", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+            </div>
+          </div>
+          <div class="mb-6 md:flex md:justify-between">
+            <div class="flex-grow">
+              <%= perfil.label :telefone, :class=> "sr-only" %>
+              <%= render "devise/registrations/campos/telefone", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+            </div>
+            <div class="flex-grow">
+              <%= perfil.label :sexo, :class=> "sr-only" %>
+              <%= perfil.select :sexo, ["Masculino", "Feminino", "Outro", "Prefiro Não Informar"], {}, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <div class="flex-grow">
+              <%= perfil.label :nascimento, :class=> "sr-only" %>
+              <%= perfil.date_field :nascimento, :class=>"appearance-none rounded-none relative block w-full px-3 py-1.8 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm rounded-r-md" %>
+            </div>
+          </div>
+          
+          <div class="rounded-md shadow-sm -space-y-px">
+            <div class="mb-6 md:flex md:justify-between">
+              <div class="flex-grow">
+                <%= perfil.label :rua, :class=>"sr-only" %>
+                <%= render "devise/registrations/campos/rua", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+              </div>
+                <div class="flex-grow w-1/6">
+                  <%= perfil.label :numero, :class=>"sr-only" %>
+                  <%= render "devise/registrations/campos/numero", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+                </div>
+            </div>
+            <div class="mb-6 md:flex md:justify-between">
+              <div class="flex-grow">
+                <%= perfil.label :bairro, :class=>"sr-only" %>
+                <%= render "devise/registrations/campos/bairro", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+              </div>
+              <div class="flex-grow">
+                <%= perfil.label :cidade, :class=>"sr-only" %>
+                <%= render "devise/registrations/campos/cidade", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+              </div>
+              <div class="flex-grow w-2/6">
+                <%= perfil.label :estado, :class=>"sr-only" %>
+                <%= render "devise/registrations/campos/estado", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+              </div>            
+            </div>
+            <div>
+              <%= perfil.label :complemento, :class=>"sr-only"%>
+              <%= render "devise/registrations/campos/complemento", perfil: perfil, erros: erros, keys_hash: keys_hash %>
+            </div>
+          </div>
+        <% end %>
+        <% if erros && keys_hash.include?(:"password_confirmation") %>
+            <p class="text-center text-sm text-gray-500"> Senhas diferentes </p>
+        <% else %>
+            <p class="text-center text-sm text-gray-500"><%= @minimum_password_length %> characters minimum</p>
+        <% end %> 
+        <div class="mb-4 md:flex md:justify-between">
+            <div>
+              <%= f.label :password, :for=>"password", :class=>"sr-only" %>
+              <%= render "devise/registrations/campos/password", f: f, erros: erros, keys_hash: keys_hash %>
+            </div>
+            <div>
+              <%= f.label :password_confirmation, :for=>"password", :class=>"sr-only" %>
+              <%= render "devise/registrations/campos/password_confirmation", f: f, erros: erros, keys_hash: keys_hash %>
+            </div>
+        </div>
+        
+        <div class="my-5">
+          <%= f.label :current_password, :for=>"password", :class=>"sr-only" %>
+          <%= render "devise/registrations/campos/password_current", f: f, erros: erros, keys_hash: keys_hash %>
+        </div>
+
+        <div class="mb-6 md:flex md:justify-between">
+          <div class="flex-grow">
+            <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                <!-- Heroicon name: solid/lock-closed -->
+                <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            <%= f.submit "Salvar" %>
+            </button>
+          </div>
+          <div class="flex-grow">
+            <%= link_to "Cancelar", @user, class: "ml-2 rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium group relative w-full flex justify-center border border-transparent text-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

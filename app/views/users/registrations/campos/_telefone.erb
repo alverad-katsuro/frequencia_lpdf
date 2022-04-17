@@ -1,0 +1,5 @@
+<% if erros && keys_hash.include?(:"perfil.telefone")%>
+  <%= perfil.text_field :telefone, autofocus: true, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-red-500 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-red-500 focus:border-red-900 focus:z-10 sm:text-sm rounded-l-md",:placeholder=>"(00) 00000-0000", :id=>"telefone", maxlength:"15" %>
+<% else %>
+  <%= perfil.text_field :telefone, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm rounded-l-md",:placeholder=>"(00) 00000-0000", :id=>"telefone", maxlength:"15" %>
+<% end %>

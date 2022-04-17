@@ -1,0 +1,26 @@
+<!-- component -->
+<div class="flex flex-col h-screen">
+    <div class="flex-grow overflow-auto">
+      <table class="relative w-full border">
+        <thead>
+          <tr>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Nome</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Entrada</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Saida</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Fechou o ponto?</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y bg-gray-100">
+        <% @frequencias.each do |frequencia| %>
+        <%= turbo_frame_tag frequencia do %>
+          <tr>
+            <td class="px-6 py-4 text-center"><%= frequencia.user.nome %></td>
+            <td class="px-6 py-4 text-center"><%= frequencia.entrada %></td>
+            <td class="px-6 py-4 text-center"><%= frequencia.saida %></td>
+            <td class="px-6 py-4 text-center"><%= frequencia.fechou_o_ponto %></td>
+        <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

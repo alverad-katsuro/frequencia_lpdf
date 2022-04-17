@@ -1,3 +1,17 @@
+
+class TurboFailureApp < Devise::FailureApp
+  def respond
+    if request_format == :turbo_stream
+      redirect
+    else
+      super
+    end
+  end
+
+  def skip_format?
+    %w(html turbo_stream */*).include? request_format.to_s
+  end
+end
 # frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
@@ -14,11 +28,27 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '50674a3ea20e1de9928b8babd2180baa3f341db80044b2db6e529f03b4af3e86646484a5250a443bcebe5230ab51eba4fd51a0d8d9fdea0913342c9b4ea8b07f'
+  # config.secret_key = '4b20ade2085e8cc42d08f7e79551b79e74a13f7b344f45529ac12bc6fa9731a9c096aaacf0874dc25d6da559410a2fc8a6fd7bc11d9252a992d94e09c1046d99'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  # config.parent_controller = 'DeviseController'
+  config.parent_controller = 'TurboDeviseController'
+  
+  # ...
+
+  # ==> Navigation configuration
+  # ...
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
+
+  # ...
+
+  # ==> Warden configuration
+  # ...
+  config.warden do |manager|
+    manager.failure_app = TurboFailureApp
+  #   manager.intercept_401 = false
+  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
+  end
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -126,7 +156,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '96d8431c97bf5bc9d32471eecb8a0d45cc84f6fa868a23866bf97efd88b7ab18e1cfec3c900460bd671821a045be25e9403368c884298886ef46a2fd6ba9f900'
+  # config.pepper = '47366775bef76c104ecaeeb06d8d91a93c90c5ff1b93a10cfd40187e0ddbdbeb201696e635b324e3ad3d32101b6564a9466cef63f816844f9d23ec78cd94fe5e'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -244,7 +274,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -264,7 +294,7 @@ Devise.setup do |config|
   #
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
-
+  #config.navigational_formats = ['*/*', :html, :turbo_stream]
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 

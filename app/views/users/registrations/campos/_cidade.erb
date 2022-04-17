@@ -1,0 +1,6 @@
+<% if erros && keys_hash.include?(:"perfil.cidade")%>
+  <%= perfil.text_field :cidade, autofocus:true, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-red-500 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm", :placeholder=>"Cidade", :value=>"Barcarena" %><br>
+<% else %>
+  <%= perfil.text_field :cidade, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", :placeholder=>"Cidade", :value=>"Barcarena" %><br>
+
+<% end %>
