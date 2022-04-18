@@ -20,10 +20,10 @@ class HomeController < ApplicationController
     frequencia = Frequencia.where(user_id:current_user.id, saida:nil).last
     entrada = frequencia.entrada
     if Time.now > Time.new(entrada.year, entrada.month, entrada.day, 5).next_day
-      frequencia.update(saida: Time.now, fechou_o_ponto: true)
+      frequencia.update(saida: Time.now, fechou_o_ponto: false)
       redirect_to root_path
     elsif Time.now > Time.new(entrada.year, entrada.month, entrada.day, entrada.hour + 1, entrada.min)
-      frequencia.update(saida: Time.now, fechou_o_ponto: false)
+      frequencia.update(saida: Time.now, fechou_o_ponto: true)
       redirect_to root_path
     end
   end
