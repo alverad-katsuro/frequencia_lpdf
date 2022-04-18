@@ -22,7 +22,7 @@ class HomeController < ApplicationController
     if Time.new(entrada.year, entrada.month, entrada.day, 5).next_day > Time.now
       frequencia.update(saida: Time.now, fechou_o_ponto: true)
       redirect_to root_path
-    else
+    elsif Time.new(entrada.year, entrada.month, entrada.day, entrada.hour + 1).next_day < Time.now
       frequencia.update(saida: Time.now, fechou_o_ponto: false)
       redirect_to root_path
     end
