@@ -5,6 +5,21 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {:host =>'10.22.1.50:9000'}
+  config.action_mailer.default_options = {from: 'comissao.ti.lpdf@gmail.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  enable_starttls_auto: true,
+  address:              'smtp.gmail.com',
+  port:                 587,
+  #domain:               'gmail.com',
+  user_name:            Rails.application.credentials.gmail[:email],
+  password:             Rails.application.credentials.gmail[:password],
+  authentication:       'plain'
+}
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
