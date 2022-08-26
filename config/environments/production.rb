@@ -8,7 +8,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = {:host =>'10.22.1.50:9000'}
+  config.action_mailer.default_url_options = {:host =>'*:9000'}
   config.action_mailer.default_options = {from: 'comissao.ti.lpdf@gmail.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
